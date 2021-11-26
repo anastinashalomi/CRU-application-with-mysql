@@ -1,0 +1,49 @@
+﻿@model List<Customer>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Customer Details</p>
+</div>
+
+<h2>Customer</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>CustonerID</td>
+            <td>Name</td>
+            <td>CustonerCode</td>
+            <td>Address</td>
+            <td>Edit</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cust in Model)
+        {
+            <tr>
+                <td>@cust.customerID</td>
+                <td>@cust.name</td>
+                <td>@cust.code</td>
+                <td>@cust.address</td>
+                <td>
+                    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">Edit</button>-->
+                    @Html.ActionLink("Edit", "Edit", new { id = cust.customerID }, new { @class = "btn btn-success" })
+                    <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="">Delete</button>-->
+                    @Html.ActionLink("Delete", "Delete", new { id = cust.customerID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+
+@Html.ActionLink("AddCustomer", "AddCustomer", new {@class = "btn btn-danger" })
+
+
